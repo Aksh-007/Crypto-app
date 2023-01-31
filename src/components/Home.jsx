@@ -1,11 +1,81 @@
-import React from 'react'
+import { Box, Image, Text } from "@chakra-ui/react";
+import React from "react";
+import backgroundImage from "../assests/crypto.png";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
-    <div>
-       <h1>Home Components</h1>
-    </div>
-  )
-}
+    // <Box bgColor={"blackAlpha.900"} w={"full"} h={"100vh"}>
+    //   <motion.div
+    //     style={{
+    //       height: "80vh",
+    //     }}
+    //     animate={{
+    //       translateY: "20px",
+    //     }}
+    //     transition={{
+    //       duration: 2,
+    //       repeat: Infinity,
+    //       repeatType: "reverse",
+    //     }}
+    //   >
+    //     <Image
+    //     //  justifyContent={['center','']}
+    //       w={["70%","full"]}
+    //       h={["50vh", '70vh']}
+    //       objectFit={"contain"}
+    //       src={backgroundImage}
+    //       filter={"grayscale(1)"}
+    //     />
+    //   </motion.div>
 
-export default Home
+    //   <Text
+    //     fontSize={"6xl"}
+    //     textAlign={"center"}
+    //     fontWeight={"thin"}
+    //     color={"whiteAlpha.700"}
+    //     mt={['-10','-30']}
+    //   >
+    //     Zepto
+    //   </Text>
+    // </Box>
+
+
+
+    <Box bgColor={"blackAlpha.900"} w={"full"} h={"85vh"}>
+      <motion.div
+        style={{
+          height: "80vh",
+        }}
+        animate={{
+          translateY: "20px",
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      >
+        <Image
+          w={"full"}
+          h={"full"}
+          objectFit={"contain"}
+          src={backgroundImage}
+          filter={"grayscale(1)"}
+        />
+      </motion.div>
+
+      <Text
+        fontSize={"6xl"}
+        textAlign={"center"}
+        fontWeight={"thin"}
+        color={"whiteAlpha.700"}
+        mt={"-20"}
+      >
+        3 Brackets
+      </Text>
+    </Box>
+  );
+};
+
+export default Home;
