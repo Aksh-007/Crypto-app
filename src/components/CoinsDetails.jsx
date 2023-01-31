@@ -1,4 +1,18 @@
-import { Box, Container, RadioGroup,HStack,Radio } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  RadioGroup,
+  HStack,
+  Radio,
+  VStack,
+  Text,
+  Image,
+  Stat,
+  StatNumber,
+  StatLabel,
+  StatHelpText,
+  StatArrow,
+} from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { server } from "../index";
@@ -16,6 +30,9 @@ const CoinsDetails = () => {
 
   //for params
 
+  //currencysymbol
+  const currencySymbol = currency === "inr" ?  "₹" : currency ==="eur" ? "€" : "$";
+
   useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -23,29 +40,27 @@ const CoinsDetails = () => {
         console.log(data);
         setCoin(data);
         setLoading(false);
-
       } catch (error) {
         setError(true);
         setLoading(false);
       }
     };
     fetchDetails();
-  },[params.id]);
+  }, [params.id]);
 
-  if (error) return <Error Message="error whle fetching Coin" />
- 
-  return <Container maxW={'container.xl'}>
-    {loading ?( <Loader/>) :(
+  if (error) return <Error Message="error whle fetching Coin" />;
+
+  return (
+    <Container maxW={"container.xl"}>
+      {loading ? (
+        <Loader />
+      ) : (
         <>
-        
-        <Box
-        borderWidth={1}
-        width={'full'}
-        >
-              Coin details``
-        </Box>
+          <Box borderWidth={1} width={"full"}>
+           
+          </Box>
 
-        <RadioGroup value={currency} onChange={setCurrency} p={'8'}>
+          <RadioGroup value={currency} onChange={setCurrency} p={"8"}>
             <HStack spacing={"4"}>
               <Radio value="inr">₹ INR</Radio>
               <Radio value="eur">€ Euro</Radio>
@@ -53,10 +68,32 @@ const CoinsDetails = () => {
               {/* {console.log(currency)} */}
             </HStack>
           </RadioGroup>
+
+          <VStack alignItems={"center"} spacing={"4"} p={"16"}>
+            <Text fontSize={"small"} alignSelf={"center"} opacity={"0.7"}>
+              Last Updated on{" "}
+              {Date(coin.market_data.last_updated).split("G")[0]}
+            </Text>
+            <Image src={coin.image.large} w={"30"} objectFit={"contain"} />
+
+            <Stat textAlign={'center'}>
+              <StatLabel fontSize={'40'}>{coin.name}</StatLabel>
+              <StatNumber >
+                {currencySymbol}{coin.market_data.current_price[currency]}
+              </StatNumber>
+              <StatHelpText>
+                 <StatArrow 
+                 type={coin.market_data.price_change_percentage_24h > 0 ? "increase":"decrease"}
+                 />
+                 {coin.market_data.price_change_percentage_24h}%
+              </StatHelpText>
+            </Stat>
+
+          </VStack>
         </>
-      )
-    }
-  </Container>
+      )}
+    </Container>
+  );
 };
 
 export default CoinsDetails;
