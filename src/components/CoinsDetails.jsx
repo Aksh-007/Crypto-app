@@ -12,6 +12,7 @@ import {
   StatLabel,
   StatHelpText,
   StatArrow,
+  Badge,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -31,7 +32,8 @@ const CoinsDetails = () => {
   //for params
 
   //currencysymbol
-  const currencySymbol = currency === "inr" ?  "₹" : currency ==="eur" ? "€" : "$";
+  const currencySymbol =
+    currency === "inr" ? "₹" : currency === "eur" ? "€" : "$";
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -56,9 +58,7 @@ const CoinsDetails = () => {
         <Loader />
       ) : (
         <>
-          <Box borderWidth={1} width={"full"}>
-           
-          </Box>
+          <Box borderWidth={1} width={"full"}></Box>
 
           <RadioGroup value={currency} onChange={setCurrency} p={"8"}>
             <HStack spacing={"4"}>
@@ -69,26 +69,35 @@ const CoinsDetails = () => {
             </HStack>
           </RadioGroup>
 
-          <VStack alignItems={"center"} spacing={"4"} p={"16"}>
+          <VStack alignItems={"center"} spacing={"4"} p={"3"}>
             <Text fontSize={"small"} alignSelf={"center"} opacity={"0.7"}>
               Last Updated on{" "}
               {Date(coin.market_data.last_updated).split("G")[0]}
             </Text>
-            <Image src={coin.image.large} w={"30"} objectFit={"contain"} />
+            <Image src={coin.image.large}w={[28,40]} objectFit={"contain"} />
 
-            <Stat textAlign={'center'}>
-              <StatLabel fontSize={'40'}>{coin.name}</StatLabel>
-              <StatNumber >
-                {currencySymbol}{coin.market_data.current_price[currency]}
+            <Stat textAlign={"center"}>
+              <StatLabel fontSize={"40"}>{coin.name}</StatLabel>
+              <StatNumber>
+                {currencySymbol}
+                {coin.market_data.current_price[currency]}
               </StatNumber>
               <StatHelpText>
-                 <StatArrow 
-                 type={coin.market_data.price_change_percentage_24h > 0 ? "increase":"decrease"}
-                 />
-                 {coin.market_data.price_change_percentage_24h}%
+                <StatArrow
+                  type={
+                    coin.market_data.price_change_percentage_24h > 0
+                      ? "increase"
+                      : "decrease"
+                  }
+                />
+                {coin.market_data.price_change_percentage_24h}%
               </StatHelpText>
             </Stat>
 
+            <Text fontSize={'xl'}>Market Rank</Text>
+            <Badge fontSize={"2xl"} bgColor={"blackAlpha.900"} color={"white"}>
+              {`#${coin.market_cap_rank}`}
+            </Badge>
           </VStack>
         </>
       )}
