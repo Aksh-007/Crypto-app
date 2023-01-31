@@ -37,7 +37,6 @@ const CoinsDetails = () => {
   const currencySymbol =
     currency === "inr" ? "₹" : currency === "eur" ? "€" : "$";
 
-   
   useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -56,7 +55,7 @@ const CoinsDetails = () => {
   if (error) return <Error Message="error whle fetching Coin" />;
 
   return (
-    <Container maxW={"container"} h={['130vh','100vh']}>
+    <Container maxW={"container"} h={["130vh", "100vh"]}>
       {loading ? (
         <Loader />
       ) : (
@@ -77,7 +76,7 @@ const CoinsDetails = () => {
               Last Updated on{" "}
               {Date(coin.market_data.last_updated).split("G")[0]}
             </Text>
-            <Image src={coin.image.large}w={[28,40]} objectFit={"contain"} />
+            <Image src={coin.image.large} w={[28, 40]} objectFit={"contain"} />
 
             <Stat textAlign={"center"}>
               <StatLabel fontSize={"40"}>{coin.name}</StatLabel>
@@ -97,31 +96,42 @@ const CoinsDetails = () => {
               </StatHelpText>
             </Stat>
 
-            <Text fontSize={'xl'}>Market Rank</Text>
+            <Text fontSize={"xl"}>Market Rank</Text>
             <Badge fontSize={"2xl"} bgColor={"blackAlpha.900"} color={"white"}>
               {`#${coin.market_cap_rank}`}
             </Badge>
 
-           
             <CustomBar
               high={`${currencySymbol}${coin.market_data.high_24h[currency]}`}
               low={`${currencySymbol}${coin.market_data.low_24h[currency]}`}
             />
 
-            <Box w={['70%','25%']} p={'4'}>
-                <Item title={'Max Supply'}
-                 value={535335}
-                />
-            </Box>
+            <Box w={["70%", "25%"]} p={"4"}>
+              <Item title={"Max Supply"} value={coin.market_data.max_supply} />
+              <Item
+                title={"Circulating Supply"}
+                value={coin.market_data.circulating_supply}
+              />
+              <Item
+                title={"Market Supply"}
+                value={`${currencySymbol}${coin.market_data.market_cap[currency]}`}
+              />
 
+              <Item
+                title={"All time Low"}
+                value={`${currencySymbol}${coin.market_data.atl[currency]}`}
+              />
+
+              <Item
+                title={"All time High"}
+                value={`${currencySymbol}${coin.market_data.atl[currency]}`}
+              />
+            </Box>
           </VStack>
         </>
       )}
     </Container>
   );
 };
-
-
-
 
 export default CoinsDetails;

@@ -3,12 +3,17 @@ import React from 'react'
 
 const Item = ({title, value}) => {
   return (
-   <HStack justifyContent={"space-between"} w={'full'} my={'4'}>
+   <HStack justifyContent={"space-between"} w={'full'} my={'4'} gap={'40px'}>
         <Text
         fontFamily={"Kalam"}
         letterSpacing={'widest'}
-        >{title}</Text>
-        <Text>{value}</Text>
+        >
+          {title}
+        </Text>
+
+        <Text>
+          {value}
+        </Text>
    </HStack>
   )
 }
