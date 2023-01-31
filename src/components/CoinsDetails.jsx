@@ -21,6 +21,8 @@ import Loader from "./Loader";
 //for parameter
 import { useParams } from "react-router-dom";
 import Error from "./Error";
+import CustomBar from "./CustomBar";
+import Item from "./Item";
 
 const CoinsDetails = () => {
   const params = useParams();
@@ -35,6 +37,7 @@ const CoinsDetails = () => {
   const currencySymbol =
     currency === "inr" ? "₹" : currency === "eur" ? "€" : "$";
 
+   
   useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -53,7 +56,7 @@ const CoinsDetails = () => {
   if (error) return <Error Message="error whle fetching Coin" />;
 
   return (
-    <Container maxW={"container.xl"}>
+    <Container maxW={"container"} h={['130vh','100vh']}>
       {loading ? (
         <Loader />
       ) : (
@@ -98,11 +101,27 @@ const CoinsDetails = () => {
             <Badge fontSize={"2xl"} bgColor={"blackAlpha.900"} color={"white"}>
               {`#${coin.market_cap_rank}`}
             </Badge>
+
+           
+            <CustomBar
+              high={`${currencySymbol}${coin.market_data.high_24h[currency]}`}
+              low={`${currencySymbol}${coin.market_data.low_24h[currency]}`}
+            />
+
+            <Box w={['70%','25%']} p={'4'}>
+                <Item title={'Max Supply'}
+                 value={535335}
+                />
+            </Box>
+
           </VStack>
         </>
       )}
     </Container>
   );
 };
+
+
+
 
 export default CoinsDetails;
