@@ -47,7 +47,7 @@ const Coins = () => {
   if (error) return <Error Message="error whle fetching Coin" />;
 
   return (
-    <Container maxW={"container.xl"} pt={"2rem"}>
+    <Container maxW={"container.xl"} pt={"2rem"} bgColor={"#1A202C"}>
       {loading ? (
         <Loader />
       ) : (
