@@ -57,7 +57,7 @@ const CoinsDetails = () => {
   return (
     <Container
       maxW={"full"}
-      h={["140vh", "140vh"]}
+      h={["140vh", "150vh"]}
       bgColor={"#1A202C"}
       color={"#FFFFFF"}
     >
