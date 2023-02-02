@@ -55,7 +55,12 @@ const CoinsDetails = () => {
   if (error) return <Error Message="error whle fetching Coin" />;
 
   return (
-    <Container maxW={"full"} h={["170vh", "140vh"]}  bgColor={"#1A202C"} color={"#FFFFFF"}>
+    <Container
+      maxW={"full"}
+      h={["140vh", "140vh"]}
+      bgColor={"#1A202C"}
+      color={"#FFFFFF"}
+    >
       {loading ? (
         <Loader />
       ) : (
@@ -106,7 +111,13 @@ const CoinsDetails = () => {
               low={`${currencySymbol}${coin.market_data.low_24h[currency]}`}
             />
 
-            <Box w={["70%", "25%"]} p={"4"} maxW={"full"} bgColor={"#1A202C"} color={"#FFFFFF"}>
+            <Box
+              w={["70%", "25%"]}
+              p={"4"}
+              maxW={"full"}
+              bgColor={"#1A202C"}
+              color={"#FFFFFF"}
+            >
               <Item title={"Max Supply"} value={coin.market_data.max_supply} />
               <Item
                 title={"Circulating Supply"}
@@ -117,7 +128,7 @@ const CoinsDetails = () => {
                 value={`${currencySymbol}${coin.market_data.market_cap[currency]}`}
               />
 
-<Item
+              <Item
                 title={"All Time Low"}
                 value={`${currencySymbol}${coin.market_data.atl[currency]}`}
               />
