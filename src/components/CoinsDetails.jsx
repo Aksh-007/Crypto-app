@@ -60,7 +60,7 @@ const CoinsDetails = () => {
         <Loader />
       ) : (
         <>
-          <Box borderWidth={1} width={"full"}></Box>
+          {/* <Box borderWidth={1} width={"full"}></Box> */}
 
           <RadioGroup value={currency} onChange={setCurrency} p={"8"}>
             <HStack spacing={"4"}>
