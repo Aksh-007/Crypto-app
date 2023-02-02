@@ -106,7 +106,7 @@ const CoinsDetails = () => {
               low={`${currencySymbol}${coin.market_data.low_24h[currency]}`}
             />
 
-            <Box w={["70%", "25%"]} p={"4"}>
+            <Box w={["70%", "25%"]} p={"4"} maxW={"full"} bgColor={"#1A202C"} color={"#FFFFFF"}>
               <Item title={"Max Supply"} value={coin.market_data.max_supply} />
               <Item
                 title={"Circulating Supply"}
