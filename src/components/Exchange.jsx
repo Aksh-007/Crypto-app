@@ -30,7 +30,7 @@ const Exchange = () => {
   if (error) return <Error Message="error while fetching Exchanges" />;
  
   return (
-    <Container maxW={"container.xl"} pt={'3rem'}>{loading 
+    <Container maxW={"full"} pt={'3rem'}  bgColor={"#1A202C"} color={"#FFFFFF"}>{loading 
     ? (<Loader />) 
     : (<>
        <HStack wrap={'wrap'} justifyContent="space-evenly" >
