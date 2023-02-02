@@ -6,7 +6,8 @@ const CoinCard = ({id,name, image,symbol, price,
    currencySymbol="₹" }) =>  (
     <Link to={`/coin/${id}`}>
     <VStack
-     w={"52"}
+     w={['60',"52"]}
+   //   w={"52"}
      shadow={'lg'}
      p={'10'}
      borderRadius={'lg'}
