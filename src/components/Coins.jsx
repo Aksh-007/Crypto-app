@@ -48,7 +48,7 @@ const Coins = () => {
 
   return (
     <Container maxW={"full"} pt={"2rem"} bgColor={"#1A202C"} color={"#FFFFFF"}>
-      {loading ? (
+      {loading  ? (
         <Loader />
       ) : (
         <>
