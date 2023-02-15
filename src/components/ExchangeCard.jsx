@@ -8,7 +8,7 @@ const ExchangeCard = ({ name , image, rank, url, yearlaunch }) => {
   return (
   <a href={url} target={"blank"} >
     <VStack
-     w={"52"}
+     w={['60',"58"]}
      shadow={'lg'}
      p={'10'}
      borderRadius={'lg'}
